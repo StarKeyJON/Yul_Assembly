@@ -37,6 +37,7 @@ contract StorageComplex {
         }
     }
     
+    // Array values can be located by adding the keccak256 hash of the slot with the desired index
     function readBigArrayLocation(uint256 index) external view returns (uint256 ret){
         uint256 slot;
         assembly {
@@ -46,6 +47,37 @@ contract StorageComplex {
 
         assembly {
             ret := sload(add(location, index))
+        }
+    }
+
+    function readSmallArray() external view returns(uint256 ret){
+        assembly {
+            ret := sload(smolArray.slot)
+        }
+    }
+
+    function readSmallArrayLocation(uint256 index) external view returns (bytes32 ret){
+        uint256 slot;
+        assembly {
+            slot := smolArray.slot
+        }
+        bytes32 location = keccak256(abi.encode(slot));
+
+        assembly {
+            ret := sload(add(location, index))
+        }
+    }
+
+    function getMapping(uint256 key) external view returns (uint256 ret) {
+        uint256 slot;
+        assembly {
+            slot := myMapping.slot
+        }
+
+        bytes32 location = keccak256(abi.encode(key, uint256(slot)));
+
+        assembly {
+            ret := sload(location)
         }
     }
 }
