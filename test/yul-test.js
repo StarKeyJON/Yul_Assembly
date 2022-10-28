@@ -67,7 +67,4 @@ describe("Yul Storage Tests", async function () {
     await storageOffset.writeToE(7);
     expect(await storageOffset.readEalt()).to.equal(7);
   });
-
-  // StorageComplex contract tests
-  it("Should ")
 });
