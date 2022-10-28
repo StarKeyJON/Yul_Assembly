@@ -39,7 +39,7 @@ contract UsingMemory {
             mstore(add(freeMemoryPointer, 0x40), 3)
 
             // update memory pointer
-            mstore(0x40, add(freeMemoryPointer, 0x60)) // increase memory pointer by 32 bytes
+            mstore(0x40, add(freeMemoryPointer, 0x60)) // increase memory pointer by 96 bytes
 
             mstore(0x00, keccak256(freeMemoryPointer, 0x60))
             return(0x00, 0x20)
