@@ -10,6 +10,7 @@ University of Texas Documentation: https://www.cs.utexas.edu/users/moore/acl2/ma
 
 Solidity-Fork: https://solidity-fork.readthedocs.io/en/latest/yul.html
 
+This is a personal excercise I have taken in order to more fully understand the course material found here: https://www.udemy.com/course/advanced-solidity-yul-and-assembly/?referralCode=C46DE4EE2C4BE54D4D33
 
 Herein you will find some simple contracts demonstrating the capabilities of Yul along with unit tests
 
