@@ -23,7 +23,7 @@ contract Log {
         emit SomeLogV2(5, true);
     }
 
-    // for a non-indexed event jargument, you have to load it into memory and declare it on the left hand of the log2
+    // for a non-indexed event argument, you have to load it into memory and declare it on the left hand of the log2
     function v2YulEmitLog() external {
         assembly {
             // keccak256("SomeLog(uint256,uint256)")
