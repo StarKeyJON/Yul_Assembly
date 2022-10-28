@@ -80,4 +80,40 @@ contract StorageComplex {
             ret := sload(location)
         }
     }
+
+    function getNestedMapping() external view returns (uint256 ret) {
+        uint256 slot;
+        assembly {
+            slot := nestedMapping.slot
+        }
+
+        bytes32 location = keccak256(abi.encode(uint256(4), keccak256(abi.encode(uint256(2), uint256(slot)))));
+        assembly {
+            ret := sload(location)
+        }
+    }
+
+    function lengthOfNestedList() external view returns (uint256 ret) {
+        uint256 addressToListSlot;
+        assembly {
+            addressToListSlot := addressToList.slot
+        }
+
+        bytes32 location = keccak256(abi.encode(address(0x25870DC5Db82A07dCdfA24aB899eD768a218AdaC), uint256(addressToListSlot)));
+        assembly {
+            ret := sload(location)
+        }
+    }
+
+    function getAddressToList(uint256 index) external view returns (uint256 ret) {
+        uint256 slot;
+        assembly {
+            slot := addressToList.slot
+        }
+
+        bytes32 location = keccak256(abi.encode(keccak256(abi.encode(address(0x25870DC5Db82A07dCdfA24aB899eD768a218AdaC), uint256(slot)))));
+        assembly {
+            ret := sload(add(location, index))
+        }
+    }
 }

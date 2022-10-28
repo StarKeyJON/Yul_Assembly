@@ -13,9 +13,9 @@ contract StorageOffset {
         }
     }
 
-    function getOffsetE() external pure returns(uint256 slot, uint256 offset){
+    // offset is the offset in bytes within the storage slot according to the encoding
+    function getOffsetE() external pure returns(uint256 offset){
         assembly {
-            slot := E.slot
             offset := E.offset
         }
     }

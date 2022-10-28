@@ -5,6 +5,7 @@ const { ethers } = require("hardhat");
 describe("Yul Storage Tests", async function () {
   let storageBasics;
   let storageOffset;
+  let storageComplex;
 
   beforeEach(async () => {
     const StorageBasics = await ethers.getContractFactory("StorageBasics");
@@ -14,6 +15,10 @@ describe("Yul Storage Tests", async function () {
     const StorageOffset = await ethers.getContractFactory("StorageOffset");
     storageOffset = await StorageOffset.deploy();
     await storageOffset.deployed();
+
+    const StorageComplex = await ethers.getContractFactory("StorageComplex");
+    storageComplex = await StorageComplex.deploy();
+    await storageComplex.deployed();
   });
 
   // Storage Basics contract testing
@@ -52,11 +57,17 @@ describe("Yul Storage Tests", async function () {
     await storageBasics.setSlotVarYul(0, 7);
     expect(await storageBasics.getX()).to.equal(7);
   });
-  it("Should read from the offset slot", async function () {
+
+  // StorageOffset contract tests
+  it("Should read from and write to the offset slot", async function () {
     expect(await storageOffset.readBySlot(0)).to.equal(
       1767062744351721534701654836863616714567074519661780062949099620783882244n
     );
+    expect(await storageOffset.getOffsetE()).to.equal(28);
     await storageOffset.writeToE(7);
     expect(await storageOffset.readEalt()).to.equal(7);
   });
+
+  // StorageComplex contract tests
+  it("Should ")
 });
